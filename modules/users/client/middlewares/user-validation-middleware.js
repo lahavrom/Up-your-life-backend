@@ -32,10 +32,33 @@ const registerUserSchema = {
   },
 };
 
+const loginUserSchema = {
+  email: {
+    exists: {
+      errorMessage: "Email is required",
+    },
+    isEmail: {
+      errorMessage: "Please provide valid email",
+    },
+    in: ["body"],
+  },
+  password: {
+    exists: {
+      errorMessage: "Password is required",
+    },
+    in: ["body"],
+  },
+};
+
 function validateRegisterUserSchema() {
   return validateSchema(registerUserSchema);
 }
 
+function validateLoginUserSchema() {
+  return validateSchema(loginUserSchema);
+}
+
 module.exports = {
   validateRegisterUserSchema,
+  validateLoginUserSchema,
 };
