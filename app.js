@@ -6,6 +6,7 @@ const express = require("express");
 const requestLogger = require("./middlewares/request-logger-middleware");
 const errorHandler = require("./middlewares/error-handler-middleware");
 // routes
+const usersRouter = require("./modules/users/client/users-router");
 
 const app = express();
 
@@ -21,6 +22,9 @@ process.on("uncaughtException", (error) => {
 
 app.use(requestLogger);
 app.use(bodyParser.json());
+
+app.use("/users", usersRouter);
+
 app.use(errorHandler);
 
 module.exports = app;
