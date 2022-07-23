@@ -15,9 +15,9 @@ const submitExpenseSchema = {
     },
     in: ["body"],
   },
-  cost: {
+  value: {
     exists: {
-      errorMessage: "Cost is required",
+      errorMessage: "Value is required",
     },
     in: ["body"],
   },

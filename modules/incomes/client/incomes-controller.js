@@ -7,8 +7,7 @@ async function submitIncome(req, res) {
   const incomeValues = _.pick(req.body, [
     "uId",
     "type",
-    "amount",
-    "category",
+    "value",
     "description",
     "month",
     "year",

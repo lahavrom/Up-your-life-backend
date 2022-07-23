@@ -7,7 +7,7 @@ async function submitExpense(req, res) {
   const expenseValues = _.pick(req.body, [
     "uId",
     "type",
-    "cost",
+    "value",
     "category",
     "description",
     "month",

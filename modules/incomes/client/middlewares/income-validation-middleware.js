@@ -15,15 +15,9 @@ const submitIncomeSchema = {
     },
     in: ["body"],
   },
-  amount: {
+  value: {
     exists: {
-      errorMessage: "Amount is required",
-    },
-    in: ["body"],
-  },
-  category: {
-    exists: {
-      errorMessage: "Category is required",
+      errorMessage: "Value is required",
     },
     in: ["body"],
   },
