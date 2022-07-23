@@ -2,7 +2,7 @@ const {
   validateSchema,
 } = require("../../../../middlewares/input-validation-middleware");
 
-const submitTodoSchema = {
+const submitUserSchema = {
   firstName: {
     exists: {
       errorMessage: "First name is required",
@@ -27,7 +27,7 @@ const submitTodoSchema = {
 };
 
 function validateSubmitUserSchema() {
-  return validateSchema(submitTodoSchema);
+  return validateSchema(submitUserSchema);
 }
 
 module.exports = {
