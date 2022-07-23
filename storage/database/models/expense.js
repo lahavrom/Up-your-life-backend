@@ -1,7 +1,13 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class Expense extends Model {}
+  class Expense extends Model {
+    static associate(models) {
+      Expense.belongsTo(models.User, {
+        foreignKey: "uId",
+      });
+    }
+  }
   Expense.init(
     {
       id: {
@@ -13,13 +19,6 @@ module.exports = (sequelize, DataTypes) => {
       uId: {
         allowNull: false,
         type: DataTypes.INTEGER,
-        references: {
-          model: {
-            tableName: "users",
-            schema: "schema",
-          },
-          key: "id",
-        },
       },
       type: {
         allowNull: false,

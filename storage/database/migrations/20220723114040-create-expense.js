@@ -11,13 +11,6 @@ module.exports = {
       uId: {
         allowNull: false,
         type: DataTypes.INTEGER,
-        references: {
-          model: {
-            tableName: "users",
-            schema: "schema",
-          },
-          key: "id",
-        },
       },
       type: {
         allowNull: false,
