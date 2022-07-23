@@ -1,4 +1,5 @@
 const { validationResult, checkSchema } = require("express-validator");
+
 const { STATUS_CODES } = require("../helpers/constants");
 
 function validateSchema(schema) {
