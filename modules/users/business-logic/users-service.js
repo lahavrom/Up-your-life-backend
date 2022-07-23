@@ -1,10 +1,10 @@
 const usersDataAccess = require("../data-access/users-data-access");
 
-async function submitUser(userValues) {
-  const user = await usersDataAccess.submitUser(userValues);
+async function registerUser(userValues) {
+  const user = await usersDataAccess.registerUser(userValues);
   return user;
 }
 
 module.exports = {
-  submitUser,
+  registerUser,
 };
