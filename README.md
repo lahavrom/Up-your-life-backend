@@ -10,5 +10,13 @@
   ```
 
   ```
-  npm i && npm run start:dev
+  npm i
+  ```
+
+  ```
+  cd storage/database && npx sequelize-cli db:migrate
+  ```
+
+  ```
+  cd ../../ && npm run start:dev
   ```
