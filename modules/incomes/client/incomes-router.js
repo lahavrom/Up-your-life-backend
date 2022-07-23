@@ -1,16 +1,16 @@
 const express = require("express");
 
 const {
-	validateSubmitIncomeSchema,
+  validateSubmitIncomeSchema,
 } = require("./middlewares/income-validation-middleware");
 const incomesController = require("./incomes-controller");
 
 const incomesRouter = express.Router();
 
 incomesRouter.post(
-	"/",
-	validateSubmitIncomeSchema(),
-	incomesController.submitIncome
+  "/",
+  validateSubmitIncomeSchema(),
+  incomesController.submitIncome
 );
 
 module.exports = incomesRouter;
