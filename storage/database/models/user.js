@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   class User extends Model {}
   User.init(
     {
-      uId: {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -23,9 +23,17 @@ module.exports = (sequelize, DataTypes) => {
         unique: true,
         type: DataTypes.STRING,
       },
-      registeredAt: {
+      password: {
+        allowNull: false,
+        type: DataTypes.STRING,
+      },
+      createdAt: {
         allowNull: false,
         defaultValue: DataTypes.NOW,
+        type: DataTypes.DATE,
+      },
+      editedAt: {
+        defaultValue: null,
         type: DataTypes.DATE,
       },
     },
@@ -36,6 +44,5 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: false,
     }
   );
-  User.removeAttribute("id");
   return User;
 };
