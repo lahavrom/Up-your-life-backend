@@ -8,4 +8,10 @@ class FixedEventModelToDtoMapper extends BaseModelToDtoMapper {
   }
 }
 
-module.exports = { FixedEventModelToDtoMapper };
+class BareFixedEventModelToDtoMapper extends BaseModelToDtoMapper {
+  dtoKeys() {
+    return ["uId", "type", "value", "description"];
+  }
+}
+
+module.exports = { FixedEventModelToDtoMapper, BareFixedEventModelToDtoMapper };

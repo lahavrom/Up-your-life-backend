@@ -24,7 +24,7 @@ process.on("uncaughtException", (error) => {
   throw error;
 });
 
-cron.schedule("* * * * *", () => {
+cron.schedule("0 0 * * *", () => {
   eventsService.checkForNewAccountEvents();
 });
 

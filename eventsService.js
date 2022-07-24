@@ -3,11 +3,11 @@ const _ = require("lodash");
 const fixedEventsDataAccess = require("./modules/fixed-events/data-access/fixed-events-data-access");
 const accountEventsDataAccess = require("./modules/account-events/data-access/account-events-data-access");
 const {
-  FixedEventModelToDtoMapper,
+  BareFixedEventModelToDtoMapper,
 } = require("./modules/fixed-events/business-logic/dto/fixed-event-model-to-dto-mapper");
 const { generateNowTimestamp } = require("./helpers/utils");
 
-const fixedEventMapper = new FixedEventModelToDtoMapper();
+const bareFixedEventMapper = new BareFixedEventModelToDtoMapper();
 
 async function checkForNewAccountEvents() {
   const day = new Date().getDate();
@@ -22,9 +22,11 @@ async function checkForNewAccountEvents() {
 async function createAndSubmitAccountEvents(fixedEvents) {
   const nowTimestamp = generateNowTimestamp();
   const newAccountEvents = fixedEvents
-    .map((fixedEvent) => fixedEventMapper.convert(fixedEvent))
-    .map((mappedFixedEvent) => _.omit(mappedFixedEvent, "dayOfMonth"))
-    .map((obj) => ({ ...obj, effectiveDate: nowTimestamp }));
+    .map((fixedEvent) => bareFixedEventMapper.convert(fixedEvent))
+    .map((bareFixedEvent) => ({
+      ...bareFixedEvent,
+      effectiveDate: nowTimestamp,
+    }));
   await accountEventsDataAccess.submitMultipleAccountEvents(newAccountEvents);
 }
 
