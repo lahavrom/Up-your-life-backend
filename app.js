@@ -6,6 +6,7 @@ const requestLogger = require("./middlewares/request-logger-middleware");
 const errorHandler = require("./middlewares/error-handler-middleware");
 // routes
 const usersRouter = require("./modules/users/client/users-router");
+const accountEventsRouter = require("./modules/account-events/client/account-events-router");
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use(requestLogger);
 app.use(express.json());
 
 app.use("/users", usersRouter);
+app.use("/account-events", accountEventsRouter);
 
 app.use(errorHandler);
 
