@@ -1,5 +1,3 @@
-const _ = require("lodash");
-
 const fixedEventsDataAccess = require("./modules/fixed-events/data-access/fixed-events-data-access");
 const accountEventsDataAccess = require("./modules/account-events/data-access/account-events-data-access");
 const {
