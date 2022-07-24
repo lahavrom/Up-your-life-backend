@@ -1,5 +1,6 @@
 require("express-async-errors");
 const express = require("express");
+const cron = require("node-cron");
 
 // middlewares
 const requestLogger = require("./middlewares/request-logger-middleware");
@@ -8,6 +9,8 @@ const errorHandler = require("./middlewares/error-handler-middleware");
 const usersRouter = require("./modules/users/client/users-router");
 const accountEventsRouter = require("./modules/account-events/client/account-events-router");
 const fixedEventsRouter = require("./modules/fixed-events/client/fixed-events-router");
+//
+const eventsService = require("./eventsService");
 
 const app = express();
 
@@ -19,6 +22,10 @@ process.on("unhandledRejection", (reason, _) => {
 process.on("uncaughtException", (error) => {
   console.error("Uncaught Exception", error.message);
   throw error;
+});
+
+cron.schedule("* * * * *", () => {
+  eventsService.checkForNewAccountEvents();
 });
 
 app.use(requestLogger);

@@ -27,6 +27,7 @@
     "express-validator": "6.14.2",
     "lodash": "4.17.21",
     "mysql2": "2.3.3",
+    "node-cron": "3.0.1",
     "sequelize": "6.21.3"
   },
   "devDependencies": {

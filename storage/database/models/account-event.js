@@ -1,13 +1,7 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class AccountEvent extends Model {
-    static associate(models) {
-      AccountEvent.belongsTo(models.User, {
-        foreignKey: "uId",
-      });
-    }
-  }
+  class AccountEvent extends Model {}
   AccountEvent.init(
     {
       id: {
