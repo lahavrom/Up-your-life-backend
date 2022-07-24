@@ -1,45 +1,48 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class User extends Model {
+  class FixedEvent extends Model {
     static associate(models) {
-      User.hasMany(models.AccountEvent);
-      User.hasMany(models.FixedEvent);
+      FixedEvent.belongsTo(models.User, {
+        foreignKey: "uId",
+      });
     }
   }
-  User.init(
+  FixedEvent.init(
     {
-      uId: {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      firstName: {
+      uId: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+      },
+      type: {
         allowNull: false,
         type: DataTypes.STRING,
       },
-      lastName: {
+      value: {
+        allowNull: false,
+        type: DataTypes.FLOAT,
+      },
+      description: {
         allowNull: false,
         type: DataTypes.STRING,
       },
-      email: {
+      dayOfMonth: {
         allowNull: false,
-        unique: true,
-        type: DataTypes.STRING,
-      },
-      password: {
-        allowNull: false,
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
       },
     },
     {
       sequelize,
-      modelName: "User",
-      tableName: "users",
+      modelName: "FixedEvent",
+      tableName: "fixedEvents",
       timestamps: false,
     }
   );
-  User.removeAttribute("id");
-  return User;
+  return FixedEvent;
 };
