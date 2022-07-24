@@ -7,6 +7,7 @@ const errorHandler = require("./middlewares/error-handler-middleware");
 // routes
 const usersRouter = require("./modules/users/client/users-router");
 const accountEventsRouter = require("./modules/account-events/client/account-events-router");
+const fixedEventsRouter = require("./modules/fixed-events/client/fixed-events-router");
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use(express.json());
 
 app.use("/users", usersRouter);
 app.use("/account-events", accountEventsRouter);
+app.use("/fixed-events", fixedEventsRouter);
 
 app.use(errorHandler);
 
