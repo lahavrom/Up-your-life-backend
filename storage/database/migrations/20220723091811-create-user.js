@@ -25,15 +25,6 @@ module.exports = {
         allowNull: false,
         type: DataTypes.STRING,
       },
-      createdAt: {
-        allowNull: false,
-        defaultValue: DataTypes.NOW,
-        type: DataTypes.DATE,
-      },
-      editedAt: {
-        defaultValue: null,
-        type: DataTypes.DATE,
-      },
     });
   },
   async down(queryInterface, DataTypes) {

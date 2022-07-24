@@ -1,6 +1,6 @@
 const usersDataAccess = require("../data-access/users-data-access");
 const { UserModelToDtoMapper } = require("./dto/user-model-to-dto-mapper");
-const { hashPassword, validatePassword } = require("../../../helpers/utils");
+const { hashPassword, validatePassword } = require("../helpers/utils");
 const { InvalidCredentialsError } = require("../helpers/errors");
 
 const userMapper = new UserModelToDtoMapper();

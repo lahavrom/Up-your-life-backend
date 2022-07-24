@@ -2,10 +2,7 @@
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
-    static associate(models) {
-      User.hasMany(models.Expense);
-      User.hasMany(models.Income);
-    }
+    static associate(models) {}
   }
   User.init(
     {
@@ -32,15 +29,6 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.STRING,
       },
-      createdAt: {
-        allowNull: false,
-        defaultValue: DataTypes.NOW,
-        type: DataTypes.DATE,
-      },
-      editedAt: {
-        defaultValue: null,
-        type: DataTypes.DATE,
-      },
     },
     {
       sequelize,
@@ -49,5 +37,6 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: false,
     }
   );
+  User.removeAttribute("id");
   return User;
 };
