@@ -15,15 +15,21 @@ const submitAccountEventSchema = {
     },
     in: ["body"],
   },
-  value: {
+  category: {
     exists: {
-      errorMessage: "Value is required",
+      errorMessage: "Category is required",
     },
     in: ["body"],
   },
   description: {
     exists: {
       errorMessage: "Description is required",
+    },
+    in: ["body"],
+  },
+  value: {
+    exists: {
+      errorMessage: "Value is required",
     },
     in: ["body"],
   },

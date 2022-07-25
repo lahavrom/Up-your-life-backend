@@ -7,8 +7,9 @@ async function submitFixedEvent(req, res) {
   const values = _.pick(req.body, [
     "uId",
     "type",
-    "value",
+    "category",
     "description",
+    "value",
     "dayOfMonth",
   ]);
   const fixedEvent = await fixedEventsService.submitFixedEvent(values);

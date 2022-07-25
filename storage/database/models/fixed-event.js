@@ -18,13 +18,17 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.STRING,
       },
-      value: {
+      category: {
         allowNull: false,
-        type: DataTypes.FLOAT,
+        type: DataTypes.STRING,
       },
       description: {
         allowNull: false,
         type: DataTypes.STRING,
+      },
+      value: {
+        allowNull: false,
+        type: DataTypes.FLOAT,
       },
       dayOfMonth: {
         allowNull: false,

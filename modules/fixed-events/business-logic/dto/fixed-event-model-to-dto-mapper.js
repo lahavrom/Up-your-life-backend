@@ -4,13 +4,21 @@ const {
 
 class FixedEventModelToDtoMapper extends BaseModelToDtoMapper {
   dtoKeys() {
-    return ["id", "uId", "type", "value", "description", "dayOfMonth"];
+    return [
+      "id",
+      "uId",
+      "type",
+      "category",
+      "description",
+      "value",
+      "dayOfMonth",
+    ];
   }
 }
 
 class BareFixedEventModelToDtoMapper extends BaseModelToDtoMapper {
   dtoKeys() {
-    return ["uId", "type", "value", "description"];
+    return ["uId", "type", "category", "description", "value"];
   }
 }
 

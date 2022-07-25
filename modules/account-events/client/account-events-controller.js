@@ -7,8 +7,9 @@ async function submitAccountEvent(req, res) {
   const values = _.pick(req.body, [
     "uId",
     "type",
-    "value",
+    "category",
     "description",
+    "value",
     "effectiveDate",
   ]);
   const accountEvent = await accountEventsService.submitAccountEvent(values);

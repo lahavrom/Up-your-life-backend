@@ -4,7 +4,15 @@ const {
 
 class AccountEventModelToDtoMapper extends BaseModelToDtoMapper {
   dtoKeys() {
-    return ["id", "uId", "type", "value", "description", "effectiveDate"];
+    return [
+      "id",
+      "uId",
+      "type",
+      "category",
+      "description",
+      "value",
+      "effectiveDate",
+    ];
   }
 }
 
