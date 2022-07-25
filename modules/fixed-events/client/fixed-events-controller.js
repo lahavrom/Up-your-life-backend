@@ -15,6 +15,13 @@ async function submitFixedEvent(req, res) {
   res.status(STATUS_CODES.SUCCESS.CREATED).json(fixedEvent);
 }
 
+async function fetchAllFixedEventsByUserId(req, res) {
+  const { uId } = req.params;
+  const fixedEvents = await fixedEventsService.fetchAllFixedEventsByUserId(uId);
+  res.status(STATUS_CODES.SUCCESS.OK).json(fixedEvents);
+}
+
 module.exports = {
   submitFixedEvent,
+  fetchAllFixedEventsByUserId,
 };

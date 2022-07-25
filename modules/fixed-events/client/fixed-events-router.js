@@ -13,4 +13,9 @@ fixedEventsRouter.post(
   fixedEventsController.submitFixedEvent
 );
 
+fixedEventsRouter.get(
+  "/:uId",
+  fixedEventsController.fetchAllFixedEventsByUserId
+);
+
 module.exports = fixedEventsRouter;

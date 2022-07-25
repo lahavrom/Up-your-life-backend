@@ -10,6 +10,14 @@ async function submitFixedEvent(values) {
   return fixedEventMapper.convert(fixedEvent);
 }
 
+async function fetchAllFixedEventsByUserId(uId) {
+  const fixedEvents = await fixedEventsDataAccess.fetchAllFixedEventsByUserId(
+    uId
+  );
+  return fixedEvents.map((fixedEvent) => fixedEventMapper.convert(fixedEvent));
+}
+
 module.exports = {
   submitFixedEvent,
+  fetchAllFixedEventsByUserId,
 };
