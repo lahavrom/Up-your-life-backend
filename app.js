@@ -1,5 +1,6 @@
 require("express-async-errors");
 const express = require("express");
+const cors = require("cors");
 const cron = require("node-cron");
 
 // middlewares
@@ -28,6 +29,7 @@ cron.schedule("0 0 * * *", () => {
   eventsService.checkForNewAccountEvents();
 });
 
+app.use(cors());
 app.use(requestLogger);
 app.use(express.json());
 
