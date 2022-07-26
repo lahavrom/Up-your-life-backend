@@ -13,4 +13,9 @@ accountEventsRouter.post(
   accountEventsController.submitAccountEvent
 );
 
+accountEventsRouter.get(
+  "/:uId",
+  accountEventsController.fetchAllAccountEventsByUserId
+);
+
 module.exports = accountEventsRouter;

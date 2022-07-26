@@ -10,6 +10,15 @@ async function submitAccountEvent(values) {
   return accountEventMapper.convert(accountEvent);
 }
 
+async function fetchAllAccountEventsByUserId(uId) {
+  const accountEvents =
+    await accountEventsDataAccess.fetchAllAccountEventsByUserId(uId);
+  return accountEvents.map((accountEvent) =>
+    accountEventMapper.convert(accountEvent)
+  );
+}
+
 module.exports = {
   submitAccountEvent,
+  fetchAllAccountEventsByUserId,
 };
