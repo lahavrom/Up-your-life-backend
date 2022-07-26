@@ -3,14 +3,17 @@ const accountEventsDataAccess = require("./modules/account-events/data-access/ac
 const {
   BareFixedEventModelToDtoMapper,
 } = require("./modules/fixed-events/business-logic/dto/fixed-event-model-to-dto-mapper");
-const { generateNowTimestamp } = require("./helpers/utils");
+const {
+  getCurrentDayOfMonth,
+  generateNowTimestamp,
+} = require("./helpers/utils");
 
 const bareFixedEventMapper = new BareFixedEventModelToDtoMapper();
 
 async function checkForNewAccountEvents() {
-  const day = new Date().getDate();
+  const today = getCurrentDayOfMonth();
   const fixedEvents =
-    await fixedEventsDataAccess.fetchAllFixedEventByDayOfMonth(day);
+    await fixedEventsDataAccess.fetchAllFixedEventByDayOfMonth(today);
   if (!fixedEvents.length) {
     return;
   }
@@ -19,13 +22,11 @@ async function checkForNewAccountEvents() {
 
 async function createAndSubmitAccountEvents(fixedEvents) {
   const nowTimestamp = generateNowTimestamp();
-  const newAccountEvents = fixedEvents
-    .map((fixedEvent) => bareFixedEventMapper.convert(fixedEvent))
-    .map((bareFixedEvent) => ({
-      ...bareFixedEvent,
-      effectiveDate: nowTimestamp,
-    }));
-  await accountEventsDataAccess.submitMultipleAccountEvents(newAccountEvents);
+  const accountEvents = fixedEvents.map((fixedEvent) => ({
+    ...bareFixedEventMapper.convert(fixedEvent),
+    effectiveDate: nowTimestamp,
+  }));
+  await accountEventsDataAccess.submitMultipleAccountEvents(accountEvents);
 }
 
 module.exports = {
