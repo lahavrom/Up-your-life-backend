@@ -7,4 +7,11 @@ class InvalidCredentialsError extends Error {
   }
 }
 
-module.exports = { InvalidCredentialsError };
+class EmailAddressAlreadyInUseError extends Error {
+  constructor() {
+    super("User with this email address is already registered");
+    this.statusCode = STATUS_CODES.ERROR.CLIENT.BAD_REQUEST;
+  }
+}
+
+module.exports = { InvalidCredentialsError, EmailAddressAlreadyInUseError };
