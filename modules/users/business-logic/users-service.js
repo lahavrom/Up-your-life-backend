@@ -1,6 +1,10 @@
 const usersDataAccess = require("../data-access/users-data-access");
 const { UserModelToDtoMapper } = require("./dto/user-model-to-dto-mapper");
-const { hashPassword, validatePassword } = require("../helpers/utils");
+const {
+  hashPassword,
+  validatePassword,
+  generateAuthToken,
+} = require("../helpers/utils");
 const { InvalidCredentialsError } = require("../helpers/errors");
 
 const userMapper = new UserModelToDtoMapper();
@@ -11,7 +15,8 @@ async function registerUser(values) {
     ...values,
     password: hashedPassword,
   });
-  return userMapper.convert(user);
+  const token = generateAuthToken(user.uId);
+  return { token, user: userMapper.convert(user) };
 }
 
 async function loginUser(values) {
@@ -24,10 +29,17 @@ async function loginUser(values) {
   if (!isValidPassword) {
     throw new InvalidCredentialsError();
   }
+  const token = generateAuthToken(user.uId);
+  return { token, user: userMapper.convert(user) };
+}
+
+async function fetchUser(uId) {
+  const user = await usersDataAccess.findUserByUserId(uId);
   return userMapper.convert(user);
 }
 
 module.exports = {
   registerUser,
   loginUser,
+  fetchUser,
 };
