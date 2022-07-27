@@ -14,7 +14,12 @@ async function fetchAllFixedEventsByUserId(uId) {
   const fixedEvents = await fixedEventsDataAccess.fetchAllFixedEventsByUserId(
     uId
   );
-  return fixedEvents.map((fixedEvent) => fixedEventMapper.convert(fixedEvent));
+  const mappedFixedEvents = fixedEvents.map((fixedEvent) =>
+    fixedEventMapper.convert(fixedEvent)
+  );
+  const incomes = mappedFixedEvents.filter(({ type }) => type === "income");
+  const expenses = mappedFixedEvents.filter(({ type }) => type === "expense");
+  return { incomes, expenses };
 }
 
 module.exports = {
