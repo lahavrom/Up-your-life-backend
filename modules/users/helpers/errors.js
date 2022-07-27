@@ -14,4 +14,23 @@ class EmailAddressAlreadyInUseError extends Error {
   }
 }
 
-module.exports = { InvalidCredentialsError, EmailAddressAlreadyInUseError };
+class NoTokenProvidedError extends Error {
+  constructor() {
+    super("Access denied. No token provided");
+    this.statusCode = STATUS_CODES.ERROR.CLIENT.UNAUTHORIZED;
+  }
+}
+
+class InvalidTokenError extends Error {
+  constructor() {
+    super("Invalid token");
+    this.statusCode = STATUS_CODES.ERROR.CLIENT.BAD_REQUEST;
+  }
+}
+
+module.exports = {
+  InvalidCredentialsError,
+  EmailAddressAlreadyInUseError,
+  NoTokenProvidedError,
+  InvalidTokenError,
+};

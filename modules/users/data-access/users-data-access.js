@@ -21,7 +21,16 @@ async function findUserByEmail(email) {
   });
 }
 
+async function findUserByUserId(uId) {
+  return await User.findOne({
+    where: {
+      uId,
+    },
+  });
+}
+
 module.exports = {
   registerUser,
   findUserByEmail,
+  findUserByUserId,
 };

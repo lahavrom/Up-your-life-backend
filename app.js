@@ -1,7 +1,11 @@
 require("express-async-errors");
 const express = require("express");
-const cors = require("cors");
 const cron = require("node-cron");
+const cors = require("cors");
+
+const corsOptions = {
+  exposedHeaders: "x-auth-token",
+};
 
 // middlewares
 const requestLogger = require("./middlewares/request-logger-middleware");
@@ -29,7 +33,7 @@ cron.schedule("0 0 * * *", () => {
   eventsService.checkForNewAccountEvents();
 });
 
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(requestLogger);
 app.use(express.json());
 
