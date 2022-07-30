@@ -2,11 +2,12 @@ const {
   BaseModelToDtoMapper,
 } = require("../../../../dto/base-model-to-dto-mapper");
 
-class AccountEventModelToDtoMapper extends BaseModelToDtoMapper {
+class AccountTransactionModelToDtoMapper extends BaseModelToDtoMapper {
   dtoKeys() {
     return [
       "id",
-      "uId",
+      "accountId",
+      "userId",
       "type",
       "category",
       "description",
@@ -16,4 +17,4 @@ class AccountEventModelToDtoMapper extends BaseModelToDtoMapper {
   }
 }
 
-module.exports = { AccountEventModelToDtoMapper };
+module.exports = { AccountTransactionModelToDtoMapper };
