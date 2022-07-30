@@ -52,5 +52,5 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: false,
     }
   );
-  return AccountEvent;
+  return AccountTransaction;
 };
