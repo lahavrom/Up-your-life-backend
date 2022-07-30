@@ -5,10 +5,12 @@ const usersService = require("../business-logic/users-service");
 
 async function registerUser(req, res) {
   const values = _.pick(req.body, [
+    "accountId",
     "firstName",
     "lastName",
     "email",
     "password",
+    "department",
   ]);
   const { token, user } = await usersService.registerUser(values);
   res
@@ -24,8 +26,8 @@ async function loginUser(req, res) {
 }
 
 async function fetchUser(req, res) {
-  const { uId } = req.user;
-  const user = await usersService.fetchUser(uId);
+  const { userId } = req.user;
+  const user = await usersService.fetchUser(userId);
   res.status(STATUS_CODES.SUCCESS.OK).json(user);
 }
 
