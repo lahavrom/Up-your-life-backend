@@ -10,9 +10,9 @@ async function submitFixedEvent(values) {
   return fixedEventMapper.convert(fixedEvent);
 }
 
-async function fetchAllFixedEventsByUserId(uId) {
+async function fetchAllFixedEventsByUserId(accountId) {
   const fixedEvents = await fixedEventsDataAccess.fetchAllFixedEventsByUserId(
-    uId
+    accountId
   );
   return fixedEvents.map((fixedEvent) => fixedEventMapper.convert(fixedEvent));
 }

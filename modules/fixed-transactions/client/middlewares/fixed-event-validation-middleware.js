@@ -3,7 +3,13 @@ const {
 } = require("../../../../middlewares/input-validation-middleware");
 
 const submitFixedEventSchema = {
-  uId: {
+  accountId: {
+    exists: {
+      errorMessage: "Account id is required",
+    },
+    in: ["body"],
+  },
+  userId: {
     exists: {
       errorMessage: "User id is required",
     },

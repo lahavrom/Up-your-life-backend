@@ -5,7 +5,8 @@ const fixedEventsService = require("../business-logic/fixed-events-service");
 
 async function submitFixedEvent(req, res) {
   const values = _.pick(req.body, [
-    "uId",
+    "accountId",
+    "userId",
     "type",
     "category",
     "description",
@@ -17,8 +18,10 @@ async function submitFixedEvent(req, res) {
 }
 
 async function fetchAllFixedEventsByUserId(req, res) {
-  const { uId } = req.params;
-  const fixedEvents = await fixedEventsService.fetchAllFixedEventsByUserId(uId);
+  const { userId } = req.params;
+  const fixedEvents = await fixedEventsService.fetchAllFixedEventsByUserId(
+    userId
+  );
   res.status(STATUS_CODES.SUCCESS.OK).json(fixedEvents);
 }
 

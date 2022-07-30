@@ -8,10 +8,10 @@ async function fetchAllFixedEventByDayOfMonth(dayOfMonth) {
   });
 }
 
-async function fetchAllFixedEventsByUserId(uId) {
+async function fetchAllFixedEventsByUserId(userId) {
   return await FixedEvent.findAll({
     where: {
-      uId,
+      userId,
     },
   });
 }

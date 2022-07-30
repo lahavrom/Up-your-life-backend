@@ -6,7 +6,8 @@ class FixedEventModelToDtoMapper extends BaseModelToDtoMapper {
   dtoKeys() {
     return [
       "id",
-      "uId",
+      "accountId",
+      "userId",
       "type",
       "category",
       "description",
@@ -18,7 +19,7 @@ class FixedEventModelToDtoMapper extends BaseModelToDtoMapper {
 
 class BareFixedEventModelToDtoMapper extends BaseModelToDtoMapper {
   dtoKeys() {
-    return ["uId", "type", "category", "description", "value"];
+    return ["accountId", "userId", "type", "category", "description", "value"];
   }
 }
 
