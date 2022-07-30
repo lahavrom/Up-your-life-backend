@@ -2,7 +2,7 @@ const {
   validateSchema,
 } = require("../../../../middlewares/input-validation-middleware");
 
-const submitFixedEventSchema = {
+const submitFixedTransactionSchema = {
   accountId: {
     exists: {
       errorMessage: "Account id is required",
@@ -47,10 +47,10 @@ const submitFixedEventSchema = {
   },
 };
 
-function validateSubmitFixedEventSchema() {
-  return validateSchema(submitFixedEventSchema);
+function validateSubmitFixedTransactionSchema() {
+  return validateSchema(submitFixedTransactionSchema);
 }
 
 module.exports = {
-  validateSubmitFixedEventSchema,
+  validateSubmitFixedTransactionSchema,
 };
