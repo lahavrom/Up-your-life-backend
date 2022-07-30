@@ -1,16 +1,16 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class User extends Model {
+  class FixedTransaction extends Model {
     static associate(models) {
-      User.belongsTo(models.Account, {
+      FixedTransaction.belongsTo(models.Account, {
         foreignKey: "accountId",
       });
     }
   }
-  User.init(
+  FixedTransaction.init(
     {
-      userId: {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -20,35 +20,37 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.INTEGER,
       },
-      firstName: {
+      userId: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+      },
+      type: {
         allowNull: false,
         type: DataTypes.STRING,
       },
-      lastName: {
+      category: {
         allowNull: false,
         type: DataTypes.STRING,
       },
-      email: {
-        allowNull: false,
-        unique: true,
-        type: DataTypes.STRING,
-      },
-      password: {
+      description: {
         allowNull: false,
         type: DataTypes.STRING,
       },
-      department: {
+      value: {
         allowNull: false,
-        type: DataTypes.STRING,
+        type: DataTypes.FLOAT,
+      },
+      dayOfMonth: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
       },
     },
     {
       sequelize,
-      modelName: "User",
-      tableName: "users",
+      modelName: "FixedTransaction",
+      tableName: "fixedTransactions",
       timestamps: false,
     }
   );
-  User.removeAttribute("id");
-  return User;
+  return FixedEvent;
 };

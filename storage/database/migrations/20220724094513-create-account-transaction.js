@@ -1,16 +1,18 @@
 "use strict";
-const { Model } = require("sequelize");
-module.exports = (sequelize, DataTypes) => {
-  class FixedEvent extends Model {}
-  FixedEvent.init(
-    {
+module.exports = {
+  async up(queryInterface, DataTypes) {
+    await queryInterface.createTable("accountTransactions", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      uId: {
+      accountId: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+      },
+      userId: {
         allowNull: false,
         type: DataTypes.INTEGER,
       },
@@ -30,17 +32,13 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.FLOAT,
       },
-      dayOfMonth: {
+      effectiveDate: {
         allowNull: false,
-        type: DataTypes.INTEGER,
+        type: DataTypes.DATE,
       },
-    },
-    {
-      sequelize,
-      modelName: "FixedEvent",
-      tableName: "fixedEvents",
-      timestamps: false,
-    }
-  );
-  return FixedEvent;
+    });
+  },
+  async down(queryInterface, DataTypes) {
+    await queryInterface.dropTable("accountTransactions");
+  },
 };

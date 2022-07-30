@@ -1,14 +1,18 @@
 "use strict";
 module.exports = {
   async up(queryInterface, DataTypes) {
-    await queryInterface.createTable("fixedEvents", {
+    await queryInterface.createTable("fixedTransactions", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      uId: {
+      accountId: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+      },
+      userId: {
         allowNull: false,
         type: DataTypes.INTEGER,
       },
@@ -35,6 +39,6 @@ module.exports = {
     });
   },
   async down(queryInterface, DataTypes) {
-    await queryInterface.dropTable("fixedEvents");
+    await queryInterface.dropTable("fixedTransactions");
   },
 };
