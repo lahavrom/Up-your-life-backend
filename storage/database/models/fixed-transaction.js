@@ -2,11 +2,11 @@
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class FixedTransaction extends Model {
-    static associate(models) {
-      FixedTransaction.belongsTo(models.Account, {
-        foreignKey: "accountId",
-      });
-    }
+    // static associate(models) {
+    //   FixedTransaction.belongsTo(models.Account, {
+    //     foreignKey: "accountId",
+    //   });
+    // }
   }
   FixedTransaction.init(
     {
