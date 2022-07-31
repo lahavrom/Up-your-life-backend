@@ -20,5 +20,9 @@
   ```
 
   ```
+  cd npx sequelize-cli db:seed:all
+  ```
+
+  ```
   cd ../../ && npm run start:dev
   ```
