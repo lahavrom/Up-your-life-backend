@@ -29,10 +29,6 @@ module.exports = {
         allowNull: false,
         type: DataTypes.STRING,
       },
-      department: {
-        allowNull: false,
-        type: DataTypes.STRING,
-      },
     });
   },
   async down(queryInterface, DataTypes) {
