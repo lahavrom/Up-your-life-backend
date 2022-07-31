@@ -30,6 +30,12 @@ const registerUserSchema = {
     },
     in: ["body"],
   },
+  department: {
+    exists: {
+      errorMessage: "Department is required",
+    },
+    in: ["body"],
+  },
 };
 
 const loginUserSchema = {

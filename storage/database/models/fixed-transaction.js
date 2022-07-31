@@ -1,14 +1,26 @@
 "use strict";
-module.exports = {
-  async up(queryInterface, DataTypes) {
-    await queryInterface.createTable("fixedEvents", {
+const { Model } = require("sequelize");
+module.exports = (sequelize, DataTypes) => {
+  class FixedTransaction extends Model {
+    // static associate(models) {
+    //   FixedTransaction.belongsTo(models.Account, {
+    //     foreignKey: "accountId",
+    //   });
+    // }
+  }
+  FixedTransaction.init(
+    {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      uId: {
+      accountId: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+      },
+      userId: {
         allowNull: false,
         type: DataTypes.INTEGER,
       },
@@ -32,9 +44,13 @@ module.exports = {
         allowNull: false,
         type: DataTypes.INTEGER,
       },
-    });
-  },
-  async down(queryInterface, DataTypes) {
-    await queryInterface.dropTable("fixedEvents");
-  },
+    },
+    {
+      sequelize,
+      modelName: "FixedTransaction",
+      tableName: "fixedTransactions",
+      timestamps: false,
+    }
+  );
+  return FixedTransaction;
 };

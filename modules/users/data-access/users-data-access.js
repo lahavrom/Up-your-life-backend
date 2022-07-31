@@ -21,10 +21,10 @@ async function findUserByEmail(email) {
   });
 }
 
-async function findUserByUserId(uId) {
+async function findUserByUserId(userId) {
   return await User.findOne({
     where: {
-      uId,
+      userId,
     },
   });
 }

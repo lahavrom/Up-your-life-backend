@@ -12,10 +12,10 @@ const requestLogger = require("./middlewares/request-logger-middleware");
 const errorHandler = require("./middlewares/error-handler-middleware");
 // routes
 const usersRouter = require("./modules/users/client/users-router");
-const accountEventsRouter = require("./modules/account-events/client/account-events-router");
-const fixedEventsRouter = require("./modules/fixed-events/client/fixed-events-router");
+const accountTransactionsRouter = require("./modules/account-transactions/client/account-transactions-router");
+const fixedTransactionsRouter = require("./modules/fixed-transactions/client/fixed-transactions-router");
 //
-const eventsService = require("./eventsService");
+const transactionsService = require("./transactionsService");
 
 const app = express();
 
@@ -30,7 +30,7 @@ process.on("uncaughtException", (error) => {
 });
 
 cron.schedule("0 0 * * *", () => {
-  eventsService.checkForNewAccountEvents();
+  transactionsService.checkForNewAccountTransactions();
 });
 
 app.use(cors(corsOptions));
@@ -38,8 +38,8 @@ app.use(requestLogger);
 app.use(express.json());
 
 app.use("/users", usersRouter);
-app.use("/account-events", accountEventsRouter);
-app.use("/fixed-events", fixedEventsRouter);
+app.use("/account-transactions", accountTransactionsRouter);
+app.use("/fixed-transactions", fixedTransactionsRouter);
 
 app.use(errorHandler);
 

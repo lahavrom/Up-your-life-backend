@@ -2,8 +2,14 @@ const {
   validateSchema,
 } = require("../../../../middlewares/input-validation-middleware");
 
-const submitFixedEventSchema = {
-  uId: {
+const submitAccountTransactionSchema = {
+  accountId: {
+    exists: {
+      errorMessage: "Account id is required",
+    },
+    in: ["body"],
+  },
+  userId: {
     exists: {
       errorMessage: "User id is required",
     },
@@ -33,18 +39,18 @@ const submitFixedEventSchema = {
     },
     in: ["body"],
   },
-  dayOfMonth: {
+  effectiveDate: {
     exists: {
-      errorMessage: "Day of month is required",
+      errorMessage: "Effective date is required",
     },
     in: ["body"],
   },
 };
 
-function validateSubmitFixedEventSchema() {
-  return validateSchema(submitFixedEventSchema);
+function validateSubmitAccountTransactionSchema() {
+  return validateSchema(submitAccountTransactionSchema);
 }
 
 module.exports = {
-  validateSubmitFixedEventSchema,
+  validateSubmitAccountTransactionSchema,
 };

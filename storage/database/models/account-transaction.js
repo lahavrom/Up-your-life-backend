@@ -1,8 +1,14 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class AccountEvent extends Model {}
-  AccountEvent.init(
+  class AccountTransaction extends Model {
+    // static associate(models) {
+    //   AccountTransaction.belongsTo(models.Account, {
+    //     foreignKey: "accountId",
+    //   });
+    // }
+  }
+  AccountTransaction.init(
     {
       id: {
         allowNull: false,
@@ -10,7 +16,11 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      uId: {
+      accountId: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+      },
+      userId: {
         allowNull: false,
         type: DataTypes.INTEGER,
       },
@@ -37,10 +47,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "AccountEvent",
-      tableName: "accountEvents",
+      modelName: "AccountTransaction",
+      tableName: "accountTransactions",
       timestamps: false,
     }
   );
-  return AccountEvent;
+  return AccountTransaction;
 };

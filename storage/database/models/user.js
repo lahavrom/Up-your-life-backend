@@ -1,13 +1,23 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class User extends Model {}
+  class User extends Model {
+    // static associate(models) {
+    //   User.belongsTo(models.Account, {
+    //     foreignKey: "accountId",
+    //   });
+    // }
+  }
   User.init(
     {
-      uId: {
+      userId: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
+        type: DataTypes.INTEGER,
+      },
+      accountId: {
+        allowNull: false,
         type: DataTypes.INTEGER,
       },
       firstName: {
@@ -24,6 +34,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
       },
       password: {
+        allowNull: false,
+        type: DataTypes.STRING,
+      },
+      department: {
         allowNull: false,
         type: DataTypes.STRING,
       },
