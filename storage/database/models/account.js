@@ -1,13 +1,7 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class Account extends Model {
-    // static associate(models) {
-    //   Account.hasMany(models.User);
-    //   Account.hasMany(models.AccountTransaction);
-    //   Account.hasMany(models.FixedTransaction);
-    // }
-  }
+  class Account extends Model {}
   Account.init(
     {
       accountId: {
