@@ -11,6 +11,10 @@ async function submitFixedTransaction(values) {
   return fixedTransactionMapper.convert(fixedTransaction);
 }
 
+async function editFixedTransaction(id, values) {
+  await fixedTransactionsDataAccess.editFixedTransaction(id, values);
+}
+
 async function fetchAllFixedTransactionsByAccountId(accountId) {
   const fixedTransactions =
     await fixedTransactionsDataAccess.fetchAllFixedTransactionsByAccountId(
@@ -23,5 +27,6 @@ async function fetchAllFixedTransactionsByAccountId(accountId) {
 
 module.exports = {
   submitFixedTransaction,
+  editFixedTransaction,
   fetchAllFixedTransactionsByAccountId,
 };

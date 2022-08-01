@@ -16,8 +16,20 @@ async function fetchAllAccountTransactionsByAccountId(accountId) {
   });
 }
 
+async function editAccountTransaction(id, values) {
+  await AccountTransaction.update(
+    { ...values },
+    {
+      where: {
+        id,
+      },
+    }
+  );
+}
+
 module.exports = {
   submitAccountTransaction,
   submitMultipleAccountTransactions,
+  editAccountTransaction,
   fetchAllAccountTransactionsByAccountId,
 };

@@ -18,6 +18,18 @@ async function submitAccountTransaction(req, res) {
   res.status(STATUS_CODES.SUCCESS.CREATED).json(accountTransactions);
 }
 
+async function editAccountTransaction(req, res) {
+  const { id } = req.params;
+  const values = _.pick(req.body, [
+    "category",
+    "description",
+    "value",
+    "effectiveDate",
+  ]);
+  await accountTransactionsService.editAccountTransaction(id, values);
+  res.status(STATUS_CODES.SUCCESS.OK).json();
+}
+
 async function fetchAllAccountTransactionsByAccountId(req, res) {
   const { accountId } = req.params;
   const accountTransactions =
@@ -29,5 +41,6 @@ async function fetchAllAccountTransactionsByAccountId(req, res) {
 
 module.exports = {
   submitAccountTransaction,
+  editAccountTransaction,
   fetchAllAccountTransactionsByAccountId,
 };

@@ -18,6 +18,18 @@ async function submitFixedTransaction(req, res) {
   res.status(STATUS_CODES.SUCCESS.CREATED).json(fixedTransaction);
 }
 
+async function editFixedTransaction(req, res) {
+  const { id } = req.params;
+  const values = _.pick(req.body, [
+    "category",
+    "description",
+    "value",
+    "dayOfMonth",
+  ]);
+  await fixedTransactionsService.editFixedTransaction(id, values);
+  res.status(STATUS_CODES.SUCCESS.OK).json();
+}
+
 async function fetchAllFixedTransactionsByAccountId(req, res) {
   const { accountId } = req.params;
   const fixedTransactions =
@@ -29,5 +41,6 @@ async function fetchAllFixedTransactionsByAccountId(req, res) {
 
 module.exports = {
   submitFixedTransaction,
+  editFixedTransaction,
   fetchAllFixedTransactionsByAccountId,
 };

@@ -11,6 +11,10 @@ async function submitAccountTransaction(values) {
   return accountTransactionMapper.convert(accountTransaction);
 }
 
+async function editAccountTransaction(id, value) {
+  await accountTransactionsDataAccess.editAccountTransaction(id, value);
+}
+
 async function fetchAllAccountTransactionsByAccountId(accountId) {
   const accountTransaction =
     await accountTransactionsDataAccess.fetchAllAccountTransactionsByAccountId(
@@ -23,5 +27,6 @@ async function fetchAllAccountTransactionsByAccountId(accountId) {
 
 module.exports = {
   submitAccountTransaction,
+  editAccountTransaction,
   fetchAllAccountTransactionsByAccountId,
 };

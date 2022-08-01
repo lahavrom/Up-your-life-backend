@@ -2,6 +2,7 @@ const express = require("express");
 
 const {
   validateSubmitAccountTransactionSchema,
+  validateEditAccountTransactionSchema,
 } = require("./middlewares/account-transaction-validation-middleware");
 const {
   validateAuthToken,
@@ -14,6 +15,12 @@ accountTransactionsRouter.post(
   "/",
   validateSubmitAccountTransactionSchema(),
   accountTransactionsController.submitAccountTransaction
+);
+
+accountTransactionsRouter.put(
+  "/:id",
+  validateEditAccountTransactionSchema(),
+  accountTransactionsController.editAccountTransaction
 );
 
 accountTransactionsRouter.get(

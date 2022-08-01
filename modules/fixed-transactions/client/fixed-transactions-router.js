@@ -2,6 +2,7 @@ const express = require("express");
 
 const {
   validateSubmitFixedTransactionSchema,
+  validateEditFixedTransactionSchema,
 } = require("./middlewares/fixed-transaction-validation-middleware");
 const {
   validateAuthToken,
@@ -14,6 +15,12 @@ fixedTransactionsRouter.post(
   "/",
   validateSubmitFixedTransactionSchema(),
   fixedTransactionsController.submitFixedTransaction
+);
+
+fixedTransactionsRouter.put(
+  "/:id",
+  validateEditFixedTransactionSchema(),
+  fixedTransactionsController.editFixedTransaction
 );
 
 fixedTransactionsRouter.get(
