@@ -1,19 +1,11 @@
 const { FixedTransaction } = require("../../../storage/database/models");
 
 async function fetchAllFixedTransactionsByDayOfMonth(dayOfMonth) {
-  return await FixedTransaction.findAll({
-    where: {
-      dayOfMonth,
-    },
-  });
+  return await FixedTransaction.findAll({ where: { dayOfMonth } });
 }
 
 async function fetchAllFixedTransactionsByAccountId(accountId) {
-  return await FixedTransaction.findAll({
-    where: {
-      accountId,
-    },
-  });
+  return await FixedTransaction.findAll({ where: { accountId } });
 }
 
 async function submitFixedTransaction(values) {
@@ -21,14 +13,7 @@ async function submitFixedTransaction(values) {
 }
 
 async function editFixedTransaction(id, values) {
-  await FixedTransaction.update(
-    { ...values },
-    {
-      where: {
-        id,
-      },
-    }
-  );
+  await FixedTransaction.update({ ...values }, { where: { id } });
 }
 
 module.exports = {

@@ -13,13 +13,13 @@ const accountTransactionsRouter = express.Router();
 
 accountTransactionsRouter.post(
   "/",
-  validateSubmitAccountTransactionSchema(),
+  [validateAuthToken, validateSubmitAccountTransactionSchema()],
   accountTransactionsController.submitAccountTransaction
 );
 
 accountTransactionsRouter.put(
   "/:id",
-  validateEditAccountTransactionSchema(),
+  [validateAuthToken, validateEditAccountTransactionSchema()],
   accountTransactionsController.editAccountTransaction
 );
 

@@ -9,22 +9,11 @@ async function submitMultipleAccountTransactions(values) {
 }
 
 async function fetchAllAccountTransactionsByAccountId(accountId) {
-  return await AccountTransaction.findAll({
-    where: {
-      accountId,
-    },
-  });
+  return await AccountTransaction.findAll({ where: { accountId } });
 }
 
 async function editAccountTransaction(id, values) {
-  await AccountTransaction.update(
-    { ...values },
-    {
-      where: {
-        id,
-      },
-    }
-  );
+  await AccountTransaction.update({ ...values }, { where: { id } });
 }
 
 module.exports = {

@@ -13,13 +13,13 @@ const fixedTransactionsRouter = express.Router();
 
 fixedTransactionsRouter.post(
   "/",
-  validateSubmitFixedTransactionSchema(),
+  [validateAuthToken, validateSubmitFixedTransactionSchema()],
   fixedTransactionsController.submitFixedTransaction
 );
 
 fixedTransactionsRouter.put(
   "/:id",
-  validateEditFixedTransactionSchema(),
+  [validateAuthToken, validateEditFixedTransactionSchema()],
   fixedTransactionsController.editFixedTransaction
 );
 
