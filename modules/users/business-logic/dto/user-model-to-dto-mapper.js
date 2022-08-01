@@ -4,14 +4,7 @@ const {
 
 class UserModelToDtoMapper extends BaseModelToDtoMapper {
   dtoKeys() {
-    return [
-      "userId",
-      "accountId",
-      "firstName",
-      "lastName",
-      "email",
-      "department",
-    ];
+    return ["userId", "accountId", "firstName", "lastName", "email"];
   }
 }
 
