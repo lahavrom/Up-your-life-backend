@@ -5,6 +5,11 @@ const {
   validateLoginUserSchema,
 } = require("./middlewares/user-validation-middleware");
 const { validateAuthToken } = require("./middlewares/user-auth-middleware");
+
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
+const { uploadImage } = require("./s3");
+
 const usersController = require("./users-controller");
 
 const usersRouter = express.Router();
@@ -22,5 +27,15 @@ usersRouter.post(
 );
 
 usersRouter.get("/me", validateAuthToken, usersController.fetchUser);
+
+usersRouter.post(
+  "/upload-image",
+  upload.single("image"),
+  async (req, res, next) => {
+    const file = req.file;
+    const result = await uploadImage(file);
+    res.send(200).json({ imagePath: `/images/${result.Key}` });
+  }
+);
 
 module.exports = usersRouter;

@@ -2,6 +2,7 @@ require("express-async-errors");
 const express = require("express");
 const cron = require("node-cron");
 const cors = require("cors");
+const bodyParser = require("body-parser");
 
 const corsOptions = {
   exposedHeaders: "x-auth-token",
@@ -36,6 +37,10 @@ cron.schedule("0 0 * * *", () => {
 app.use(cors(corsOptions));
 app.use(requestLogger);
 app.use(express.json());
+
+// app.use(express.bodyParser({ limit: "50mb" }));
+// app.use(bodyParser.json({ limit: "50mb" }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/users", usersRouter);
 app.use("/account-transactions", accountTransactionsRouter);

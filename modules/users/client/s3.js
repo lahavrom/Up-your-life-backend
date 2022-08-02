@@ -1,0 +1,20 @@
+const fs = require("fs");
+const AWS = require("aws-sdk");
+const BUCKET_NAME = process.env.IMAGES_BUCKET;
+const s3 = new AWS.S3({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+});
+
+const uploadImage = async (file) => {
+  const fileStream = fs.createReadStream(file.path);
+
+  const uploadParams = {
+    Bucket: `${BUCKET_NAME}/images`,
+    Key: file.originalname,
+    Body: fileStream,
+  };
+  return s3.upload(uploadParams).promise();
+};
+
+module.exports = { uploadImage };
