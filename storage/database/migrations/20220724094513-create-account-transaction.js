@@ -16,6 +16,11 @@ module.exports = {
         allowNull: false,
         type: DataTypes.INTEGER,
       },
+      status: {
+        allowNull: false,
+        defaultValue: "active",
+        type: DataTypes.STRING,
+      },
       type: {
         allowNull: false,
         type: DataTypes.STRING,
@@ -34,6 +39,10 @@ module.exports = {
       },
       effectiveDate: {
         allowNull: false,
+        type: DataTypes.DATE,
+      },
+      statusChangedAt: {
+        defaultValue: null,
         type: DataTypes.DATE,
       },
     });

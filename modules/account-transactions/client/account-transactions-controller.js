@@ -3,6 +3,7 @@ const _ = require("lodash");
 const { STATUS_CODES } = require("../../../helpers/constants");
 const accountTransactionsService = require("../business-logic/account-transactions-service");
 
+// submit
 async function submitAccountTransaction(req, res) {
   const values = _.pick(req.body, [
     "accountId",
@@ -18,6 +19,7 @@ async function submitAccountTransaction(req, res) {
   res.status(STATUS_CODES.SUCCESS.CREATED).json(accountTransactions);
 }
 
+// edit
 async function editAccountTransaction(req, res) {
   const { id } = req.params;
   const values = _.pick(req.body, [
@@ -30,6 +32,15 @@ async function editAccountTransaction(req, res) {
   res.status(STATUS_CODES.SUCCESS.OK).json();
 }
 
+// change status
+async function changeAccountTransactionStatus(req, res) {
+  const { id } = req.params;
+  const { status } = req.body;
+  await accountTransactionsService.changeAccountTransactionStatus(id, status);
+  res.status(STATUS_CODES.SUCCESS.OK).json();
+}
+
+// fetch all
 async function fetchAllAccountTransactionsByAccountId(req, res) {
   const { accountId } = req.params;
   const accountTransactions =
@@ -43,4 +54,5 @@ module.exports = {
   submitAccountTransaction,
   editAccountTransaction,
   fetchAllAccountTransactionsByAccountId,
+  changeAccountTransactionStatus,
 };

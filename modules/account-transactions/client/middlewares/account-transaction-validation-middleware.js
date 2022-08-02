@@ -82,7 +82,21 @@ function validateEditAccountTransactionSchema() {
   return validateSchema(editAccountTransactionSchema);
 }
 
+const changeAccountTransactionStatusSchema = {
+  status: {
+    exists: {
+      errorMessage: "Status is required",
+    },
+    in: ["body"],
+  },
+};
+
+function validateChangeAccountTransactionStatusSchema() {
+  return validateSchema(changeAccountTransactionStatusSchema);
+}
+
 module.exports = {
   validateSubmitAccountTransactionSchema,
   validateEditAccountTransactionSchema,
+  validateChangeAccountTransactionStatusSchema,
 };

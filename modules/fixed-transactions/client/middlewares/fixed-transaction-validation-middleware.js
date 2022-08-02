@@ -82,7 +82,21 @@ function validateEditFixedTransactionSchema() {
   return validateSchema(editFixedTransactionSchema);
 }
 
+const changeFixedTransactionStatusSchema = {
+  status: {
+    exists: {
+      errorMessage: "Status is required",
+    },
+    in: ["body"],
+  },
+};
+
+function validateChangeFixedTransactionStatusSchema() {
+  return validateSchema(changeFixedTransactionStatusSchema);
+}
+
 module.exports = {
   validateSubmitFixedTransactionSchema,
   validateEditFixedTransactionSchema,
+  validateChangeFixedTransactionStatusSchema,
 };

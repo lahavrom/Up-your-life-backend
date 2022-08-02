@@ -15,6 +15,13 @@ const STATUS_CODES = {
   },
 };
 
+const TRANSACTIONS_STATUS = {
+  ACTIVE: "active",
+  COMPLETED: "completed",
+  DELETED: "deleted",
+};
+
 module.exports = {
   STATUS_CODES,
+  TRANSACTIONS_STATUS,
 };
