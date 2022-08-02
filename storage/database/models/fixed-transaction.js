@@ -24,6 +24,11 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.INTEGER,
       },
+      status: {
+        allowNull: false,
+        defaultValue: "active",
+        type: DataTypes.STRING,
+      },
       type: {
         allowNull: false,
         type: DataTypes.STRING,
@@ -43,6 +48,10 @@ module.exports = (sequelize, DataTypes) => {
       dayOfMonth: {
         allowNull: false,
         type: DataTypes.INTEGER,
+      },
+      statusChangedAt: {
+        defaultValue: null,
+        type: DataTypes.DATE,
       },
     },
     {

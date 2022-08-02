@@ -5,16 +5,24 @@ const {
 
 const fixedTransactionMapper = new FixedTransactionModelToDtoMapper();
 
+// submit
 async function submitFixedTransaction(values) {
   const fixedTransaction =
     await fixedTransactionsDataAccess.submitFixedTransaction(values);
   return fixedTransactionMapper.convert(fixedTransaction);
 }
 
+// edit
 async function editFixedTransaction(id, values) {
   await fixedTransactionsDataAccess.editFixedTransaction(id, values);
 }
 
+// change status
+async function changeFixedTransactionStatus(id, status) {
+  await fixedTransactionsDataAccess.changeFixedTransactionStatus(id, status);
+}
+
+// fetch all
 async function fetchAllFixedTransactionsByAccountId(accountId) {
   const fixedTransactions =
     await fixedTransactionsDataAccess.fetchAllFixedTransactionsByAccountId(
@@ -29,4 +37,5 @@ module.exports = {
   submitFixedTransaction,
   editFixedTransaction,
   fetchAllFixedTransactionsByAccountId,
+  changeFixedTransactionStatus,
 };
