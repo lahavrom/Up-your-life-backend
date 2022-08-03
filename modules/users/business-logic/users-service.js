@@ -15,7 +15,7 @@ async function registerUser(values) {
     ...values,
     password: hashedPassword,
   });
-  const token = generateAuthToken(user.userId);
+  const token = generateAuthToken(user.accountId, user.userId);
   return { token, user: userMapper.convert(user) };
 }
 
@@ -29,7 +29,7 @@ async function loginUser(values) {
   if (!isValidPassword) {
     throw new InvalidCredentialsError();
   }
-  const token = generateAuthToken(user.userId);
+  const token = generateAuthToken(user.accountId, user.userId);
   return { token, user: userMapper.convert(user) };
 }
 
@@ -38,8 +38,14 @@ async function fetchUser(userId) {
   return userMapper.convert(user);
 }
 
+async function findUsersByAccountId(accountId) {
+  const users = await usersDataAccess.findUsersByAccountId(accountId);
+  return users.map((user) => userMapper.convert(user));
+}
+
 module.exports = {
   registerUser,
   loginUser,
   fetchUser,
+  findUsersByAccountId,
 };

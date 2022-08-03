@@ -12,6 +12,7 @@ const corsOptions = {
 const requestLogger = require("./middlewares/request-logger-middleware");
 const errorHandler = require("./middlewares/error-handler-middleware");
 // routes
+const accountsRouter = require("./modules/accounts/client/accounts-router");
 const usersRouter = require("./modules/users/client/users-router");
 const accountTransactionsRouter = require("./modules/account-transactions/client/account-transactions-router");
 const fixedTransactionsRouter = require("./modules/fixed-transactions/client/fixed-transactions-router");
@@ -42,6 +43,7 @@ app.use(express.json());
 // app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use("/accounts", accountsRouter);
 app.use("/users", usersRouter);
 app.use("/account-transactions", accountTransactionsRouter);
 app.use("/fixed-transactions", fixedTransactionsRouter);

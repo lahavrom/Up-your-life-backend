@@ -10,8 +10,14 @@ async function validatePassword(password, hashedPassword) {
   return await bcrypt.compare(password, hashedPassword);
 }
 
-function generateAuthToken(userId) {
-  return jwt.sign({ userId }, process.env.JWT_PRIVATE_KEY);
+function generateAuthToken(accountId, userId) {
+  return jwt.sign(
+    {
+      accountId,
+      userId,
+    },
+    process.env.JWT_PRIVATE_KEY
+  );
 }
 
 module.exports = {

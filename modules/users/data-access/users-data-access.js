@@ -29,8 +29,17 @@ async function findUserByUserId(userId) {
   });
 }
 
+async function findUsersByAccountId(accountId) {
+  return await User.findAll({
+    where: {
+      accountId,
+    },
+  });
+}
+
 module.exports = {
   registerUser,
   findUserByEmail,
   findUserByUserId,
+  findUsersByAccountId,
 };
