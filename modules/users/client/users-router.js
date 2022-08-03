@@ -8,7 +8,7 @@ const { validateAuthToken } = require("./middlewares/user-auth-middleware");
 
 const multer = require("multer");
 const upload = multer({ dest: "uploads/" });
-const { uploadImage } = require("./s3");
+const { uploadImage } = require("../../../s3");
 
 const usersController = require("./users-controller");
 
