@@ -10,7 +10,7 @@ module.exports = {
       },
       accountId: {
         allowNull: false,
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
       },
       firstName: {
         allowNull: false,

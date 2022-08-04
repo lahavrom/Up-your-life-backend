@@ -1,15 +1,15 @@
-const accountsDataAccess = require("../data-access/accounts-data-access");
 const usersService = require("../../users/business-logic/users-service");
-
-async function fetchUserAccount(accountId) {
-  return await accountsDataAccess.fetchUserAccount(accountId);
-}
+const accountsDataAccess = require("../data-access/accounts-data-access");
 
 async function fetchAccountUsers(accountId) {
   return await usersService.findUsersByAccountId(accountId);
 }
 
+async function registerAccount(values) {
+  return await accountsDataAccess.registerAccount(values);
+}
+
 module.exports = {
-  fetchUserAccount,
   fetchAccountUsers,
+  registerAccount,
 };

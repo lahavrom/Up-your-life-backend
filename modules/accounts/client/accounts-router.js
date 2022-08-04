@@ -1,14 +1,17 @@
 const express = require("express");
 
 const { validateAuthToken } = require("./middlewares/account-auth-middleware");
+const {
+  validateRegisterAccountSchema,
+} = require("./middlewares/acount-validation-middleware");
 const accountsController = require("./accounts-controller");
 
 const accountsRouter = express.Router();
 
-accountsRouter.get(
-  "/:accountId",
-  validateAuthToken,
-  accountsController.fetchUserAccount
+accountsRouter.post(
+  "/",
+  validateRegisterAccountSchema(),
+  accountsController.registerAccount
 );
 
 accountsRouter.get(

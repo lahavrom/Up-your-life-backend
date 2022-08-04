@@ -1,4 +1,7 @@
+const { v4: uuidv4 } = require("uuid");
+
 const usersDataAccess = require("../data-access/users-data-access");
+const accountsDataAccess = require("../../accounts/data-access/accounts-data-access");
 const { UserModelToDtoMapper } = require("./dto/user-model-to-dto-mapper");
 const {
   hashPassword,
@@ -10,11 +13,20 @@ const { InvalidCredentialsError } = require("../helpers/errors");
 const userMapper = new UserModelToDtoMapper();
 
 async function registerUser(values) {
-  const hashedPassword = await hashPassword(values.password);
+  const account = await accountsDataAccess.findAccountByEmail(values.email);
+  const accountId = account ? account.accountId : uuidv4();
+
+  const password = await hashPassword(values.password);
   const user = await usersDataAccess.registerUser({
     ...values,
-    password: hashedPassword,
+    accountId,
+    password,
   });
+
+  if (!account) {
+    await accountsDataAccess.registerAccount({ accountId, email: user.email });
+  }
+
   const token = generateAuthToken(user.accountId, user.userId);
   return { token, user: userMapper.convert(user) };
 }

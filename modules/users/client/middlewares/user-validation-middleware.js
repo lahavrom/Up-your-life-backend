@@ -3,12 +3,6 @@ const {
 } = require("../../../../middlewares/input-validation-middleware");
 
 const registerUserSchema = {
-  accountId: {
-    exists: {
-      errorMessage: "Account id is required",
-    },
-    in: ["body"],
-  },
   firstName: {
     exists: {
       errorMessage: "First name is required",

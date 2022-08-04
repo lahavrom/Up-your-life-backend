@@ -15,7 +15,7 @@ function validateAuthToken(req, _, next) {
     const decodedToken = jwt.verify(token, process.env.JWT_PRIVATE_KEY);
     req.user = decodedToken;
     const { accountId } = req.user;
-    if (accountId.toString() !== req.params.accountId) {
+    if (accountId !== req.params.accountId) {
       throw new UnauthorizedUserError();
     }
     next();
