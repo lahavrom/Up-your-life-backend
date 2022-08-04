@@ -1,4 +1,7 @@
 const _ = require("lodash");
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
+const { uploadImage, S3 } = require("../../../s3");
 
 const { STATUS_CODES } = require("../../../helpers/constants");
 const usersService = require("../business-logic/users-service");
@@ -29,8 +32,23 @@ async function fetchUser(req, res) {
   res.status(STATUS_CODES.SUCCESS.OK).json(user);
 }
 
+async function updateUserProfileImage(req, res) {
+  upload.single("image");
+  const file = req.file;
+  const result = await uploadImage(file);
+  const { userId } = req.user;
+  const profileImage = S3.getSignedUrl("getObject", {
+    Key: `images/${file.originalname}`,
+  });
+  await usersService.updateUserProfileImage(userId, profileImage);
+  res
+    .send(STATUS_CODES.SUCCESS.OK)
+    .json({ imagePath: `/images/${result.Key}` });
+}
+
 module.exports = {
   registerUser,
   loginUser,
   fetchUser,
+  updateUserProfileImage,
 };

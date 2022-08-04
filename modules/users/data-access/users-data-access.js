@@ -37,9 +37,23 @@ async function findUsersByAccountId(accountId) {
   });
 }
 
+async function updateUserProfileImage(userId, profileImage) {
+  await User.update(
+    {
+      profileImage,
+    },
+    {
+      where: {
+        userId,
+      },
+    }
+  );
+}
+
 module.exports = {
   registerUser,
   findUserByEmail,
   findUserByUserId,
   findUsersByAccountId,
+  updateUserProfileImage,
 };

@@ -15,18 +15,18 @@ const userMapper = new UserModelToDtoMapper();
 async function registerUser(values) {
   const account = await accountsDataAccess.findAccountByEmail(values.email);
   const accountId = account ? account.accountId : uuidv4();
-
   const password = await hashPassword(values.password);
   const user = await usersDataAccess.registerUser({
     ...values,
     accountId,
     password,
   });
-
   if (!account) {
-    await accountsDataAccess.registerAccount({ accountId, email: user.email });
+    await accountsDataAccess.registerAccount({
+      accountId,
+      email: user.email,
+    });
   }
-
   const token = generateAuthToken(user.accountId, user.userId);
   return { token, user: userMapper.convert(user) };
 }
@@ -55,9 +55,14 @@ async function findUsersByAccountId(accountId) {
   return users.map((user) => userMapper.convert(user));
 }
 
+async function updateUserProfileImage(userId, profileImage) {
+  await usersDataAccess.updateUserProfileImage(userId, profileImage);
+}
+
 module.exports = {
   registerUser,
   loginUser,
   fetchUser,
   findUsersByAccountId,
+  updateUserProfileImage,
 };

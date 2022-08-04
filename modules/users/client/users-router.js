@@ -8,10 +8,6 @@ const {
   validateAuthentication,
 } = require("./middlewares/user-auth-middleware");
 
-const multer = require("multer");
-const upload = multer({ dest: "uploads/" });
-const { uploadImage } = require("../../../s3");
-
 const usersController = require("./users-controller");
 
 const usersRouter = express.Router();
@@ -31,14 +27,9 @@ usersRouter.post(
 usersRouter.get("/me", validateAuthentication, usersController.fetchUser);
 
 usersRouter.post(
-  "/upload-image",
-  upload.single("image"),
-  async (req, res, next) => {
-    const file = req.file;
-    const result = await uploadImage(file);
-    // userId$image <- S3.getSignedUrl("getObject", { Key: `images/${file.originalname}` });
-    res.send(200).json({ imagePath: `/images/${result.Key}` });
-  }
+  "/update-profile-image",
+  validateAuthentication,
+  usersController.updateUserProfileImage
 );
 
 module.exports = usersRouter;
