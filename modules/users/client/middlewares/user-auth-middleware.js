@@ -5,7 +5,7 @@ const {
   InvalidTokenError,
 } = require("../../helpers/errors");
 
-function validateAuthToken(req, _, next) {
+function validateAuthentication(req, _, next) {
   const token = req.header("x-auth-token");
   if (!token) {
     throw new NoTokenProvidedError();
@@ -19,4 +19,4 @@ function validateAuthToken(req, _, next) {
   }
 }
 
-module.exports = { validateAuthToken };
+module.exports = { validateAuthentication };

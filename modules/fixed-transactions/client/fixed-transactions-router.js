@@ -6,7 +6,7 @@ const {
   validateChangeFixedTransactionStatusSchema,
 } = require("./middlewares/fixed-transaction-validation-middleware");
 const {
-  validateAuthToken,
+  validateAuthentication,
 } = require("../../users/client/middlewares/user-auth-middleware");
 const fixedTransactionsController = require("./fixed-transactions-controller");
 
@@ -15,28 +15,28 @@ const fixedTransactionsRouter = express.Router();
 // submit
 fixedTransactionsRouter.post(
   "/",
-  [validateAuthToken, validateSubmitFixedTransactionSchema()],
+  [validateAuthentication, validateSubmitFixedTransactionSchema()],
   fixedTransactionsController.submitFixedTransaction
 );
 
 // edit
 fixedTransactionsRouter.put(
   "/:id",
-  [validateAuthToken, validateEditFixedTransactionSchema()],
+  [validateAuthentication, validateEditFixedTransactionSchema()],
   fixedTransactionsController.editFixedTransaction
 );
 
 // change status
 fixedTransactionsRouter.patch(
   "/:id",
-  [validateAuthToken, validateChangeFixedTransactionStatusSchema()],
+  [validateAuthentication, validateChangeFixedTransactionStatusSchema()],
   fixedTransactionsController.changeFixedTransactionStatus
 );
 
 // fetch all
 fixedTransactionsRouter.get(
   "/:accountId",
-  validateAuthToken,
+  validateAuthentication,
   fixedTransactionsController.fetchAllFixedTransactionsByAccountId
 );
 

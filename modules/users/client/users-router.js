@@ -4,7 +4,9 @@ const {
   validateRegisterUserSchema,
   validateLoginUserSchema,
 } = require("./middlewares/user-validation-middleware");
-const { validateAuthToken } = require("./middlewares/user-auth-middleware");
+const {
+  validateAuthentication,
+} = require("./middlewares/user-auth-middleware");
 
 const multer = require("multer");
 const upload = multer({ dest: "uploads/" });
@@ -26,7 +28,7 @@ usersRouter.post(
   usersController.loginUser
 );
 
-usersRouter.get("/me", validateAuthToken, usersController.fetchUser);
+usersRouter.get("/me", validateAuthentication, usersController.fetchUser);
 
 usersRouter.post(
   "/upload-image",

@@ -21,13 +21,6 @@ class NoTokenProvidedError extends Error {
   }
 }
 
-class UnauthorizedUserError extends Error {
-  constructor() {
-    super("Access denied. Unauthorized user");
-    this.statusCode = STATUS_CODES.ERROR.CLIENT.UNAUTHORIZED;
-  }
-}
-
 class InvalidTokenError extends Error {
   constructor() {
     super("Invalid token");
@@ -40,5 +33,4 @@ module.exports = {
   EmailAddressAlreadyInUseError,
   NoTokenProvidedError,
   InvalidTokenError,
-  UnauthorizedUserError,
 };

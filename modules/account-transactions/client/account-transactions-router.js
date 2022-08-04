@@ -6,7 +6,7 @@ const {
   validateChangeAccountTransactionStatusSchema,
 } = require("./middlewares/account-transaction-validation-middleware");
 const {
-  validateAuthToken,
+  validateAuthentication,
 } = require("../../users/client/middlewares/user-auth-middleware");
 const accountTransactionsController = require("./account-transactions-controller");
 
@@ -15,28 +15,28 @@ const accountTransactionsRouter = express.Router();
 // submit
 accountTransactionsRouter.post(
   "/",
-  [validateAuthToken, validateSubmitAccountTransactionSchema()],
+  [validateAuthentication, validateSubmitAccountTransactionSchema()],
   accountTransactionsController.submitAccountTransaction
 );
 
 // edit
 accountTransactionsRouter.put(
   "/:id",
-  [validateAuthToken, validateEditAccountTransactionSchema()],
+  [validateAuthentication, validateEditAccountTransactionSchema()],
   accountTransactionsController.editAccountTransaction
 );
 
 // change status
 accountTransactionsRouter.patch(
   "/:id",
-  [validateAuthToken, validateChangeAccountTransactionStatusSchema()],
+  [validateAuthentication, validateChangeAccountTransactionStatusSchema()],
   accountTransactionsController.changeAccountTransactionStatus
 );
 
 // fetch all
 accountTransactionsRouter.get(
   "/:accountId",
-  validateAuthToken,
+  validateAuthentication,
   accountTransactionsController.fetchAllAccountTransactionsByAccountId
 );
 

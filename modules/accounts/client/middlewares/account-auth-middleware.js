@@ -1,29 +1,11 @@
-const jwt = require("jsonwebtoken");
+const { UnauthorizedUserError } = require("../../helpers/errors");
 
-const {
-  NoTokenProvidedError,
-  InvalidTokenError,
-  UnauthorizedUserError,
-} = require("../../../users/helpers/errors");
-
-function validateAuthToken(req, _, next) {
-  const token = req.header("x-auth-token");
-  if (!token) {
-    throw new NoTokenProvidedError();
+function validateAuthorization(req, _, next) {
+  const { accountId } = req.user;
+  if (accountId !== req.params.accountId) {
+    throw new UnauthorizedUserError();
   }
-  try {
-    const decodedToken = jwt.verify(token, process.env.JWT_PRIVATE_KEY);
-    req.user = decodedToken;
-    const { accountId } = req.user;
-    if (accountId !== req.params.accountId) {
-      throw new UnauthorizedUserError();
-    }
-    next();
-  } catch (error) {
-    throw error instanceof UnauthorizedUserError
-      ? error
-      : new InvalidTokenError();
-  }
+  next();
 }
 
-module.exports = { validateAuthToken };
+module.exports = { validateAuthorization };
