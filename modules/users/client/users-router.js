@@ -36,6 +36,7 @@ usersRouter.post(
   async (req, res, next) => {
     const file = req.file;
     const result = await uploadImage(file);
+    // userId$image <- S3.getSignedUrl("getObject", { Key: `images/${file.originalname}` });
     res.send(200).json({ imagePath: `/images/${result.Key}` });
   }
 );
