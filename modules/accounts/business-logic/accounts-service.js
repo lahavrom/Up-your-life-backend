@@ -5,11 +5,16 @@ async function fetchAccountUsers(accountId) {
   return await usersService.findUsersByAccountId(accountId);
 }
 
-async function registerAccount(values) {
-  return await accountsDataAccess.registerAccount(values);
+async function registerMultipleAccounts(values) {
+  const { accountId, email } = values;
+  const accountsArray = email.map((currEmail) => ({
+    accountId,
+    email: currEmail,
+  }));
+  return await accountsDataAccess.registerMultipleAccounts(accountsArray);
 }
 
 module.exports = {
   fetchAccountUsers,
-  registerAccount,
+  registerMultipleAccounts,
 };

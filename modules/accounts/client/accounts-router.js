@@ -16,7 +16,7 @@ const accountsRouter = express.Router();
 accountsRouter.post(
   "/",
   [validateAuthentication, validateRegisterAccountSchema()],
-  accountsController.registerAccount
+  accountsController.registerMultipleAccounts
 );
 
 accountsRouter.get(

@@ -9,13 +9,13 @@ async function fetchAccountUsers(req, res) {
   res.status(STATUS_CODES.SUCCESS.OK).json(users);
 }
 
-async function registerAccount(req, res) {
+async function registerMultipleAccounts(req, res) {
   const values = _.pick(req.body, ["accountId", "email"]);
-  const account = await accountsService.registerAccount(values);
+  const account = await accountsService.registerMultipleAccounts(values);
   res.status(STATUS_CODES.SUCCESS.CREATED).json(account);
 }
 
 module.exports = {
   fetchAccountUsers,
-  registerAccount,
+  registerMultipleAccounts,
 };
