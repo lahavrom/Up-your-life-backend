@@ -31,16 +31,20 @@ process.on("uncaughtException", (error) => {
   throw error;
 });
 
-cron.schedule("0 0 * * *", () => {
-  transactionsService.checkForNewAccountTransactions();
-});
+cron.schedule(
+  "0 0 * * *",
+  () => {
+    transactionsService.checkForNewAccountTransactions();
+  },
+  {
+    scheduled: true,
+    timezone: "Asia/Jerusalem",
+  }
+);
 
 app.use(cors(corsOptions));
 app.use(requestLogger);
-app.use(express.json());
-
-// app.use(express.bodyParser({ limit: "50mb" }));
-// app.use(bodyParser.json({ limit: "50mb" }));
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/accounts", accountsRouter);

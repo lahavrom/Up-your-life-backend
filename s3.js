@@ -9,7 +9,6 @@ const S3 = new AWS.S3({
 
 const uploadImage = async (file) => {
   const fileStream = fs.createReadStream(file.path);
-
   const uploadParams = {
     Bucket: `${BUCKET_NAME}/images`,
     Key: file.originalname,
