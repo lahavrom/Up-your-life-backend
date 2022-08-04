@@ -29,6 +29,11 @@ module.exports = {
         allowNull: false,
         type: DataTypes.STRING,
       },
+      profileImage: {
+        allowNull: false,
+        defaultValue: "",
+        type: DataTypes.STRING,
+      },
     });
   },
   async down(queryInterface, DataTypes) {
