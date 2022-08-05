@@ -37,10 +37,10 @@ async function findUsersByAccountId(accountId) {
   });
 }
 
-async function updateUserProfileImage(userId, profileImage) {
+async function updateUserProfileImage(userId, isProfileImage) {
   await User.update(
     {
-      profileImage,
+      isProfileImage,
     },
     {
       where: {

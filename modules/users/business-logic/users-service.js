@@ -55,8 +55,8 @@ async function findUsersByAccountId(accountId) {
   return users.map((user) => userMapper.convert(user));
 }
 
-async function updateUserProfileImage(userId, profileImage) {
-  await usersDataAccess.updateUserProfileImage(userId, profileImage);
+async function updateUserProfileImage(userId, isProfileImage) {
+  await usersDataAccess.updateUserProfileImage(userId, isProfileImage);
 }
 
 module.exports = {

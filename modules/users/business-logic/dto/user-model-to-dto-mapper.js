@@ -10,7 +10,7 @@ class UserModelToDtoMapper extends BaseModelToDtoMapper {
       "firstName",
       "lastName",
       "email",
-      "profileImage",
+      "isProfileImage",
     ];
   }
 }

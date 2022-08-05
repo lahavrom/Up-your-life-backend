@@ -1,4 +1,6 @@
 const express = require("express");
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
 
 const {
   validateRegisterUserSchema,
@@ -29,6 +31,7 @@ usersRouter.get("/me", validateAuthentication, usersController.fetchUser);
 usersRouter.post(
   "/update-profile-image",
   validateAuthentication,
+  upload.single("image"),
   usersController.updateUserProfileImage
 );
 

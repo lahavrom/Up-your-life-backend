@@ -29,10 +29,10 @@ module.exports = {
         allowNull: false,
         type: DataTypes.STRING,
       },
-      profileImage: {
+      isProfileImage: {
         allowNull: false,
-        defaultValue: "",
-        type: DataTypes.STRING,
+        defaultValue: false,
+        type: DataTypes.BOOLEAN,
       },
     });
   },
