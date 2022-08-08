@@ -1,4 +1,4 @@
-# Up-your-life-backend
+# Up-Your-Biz-backend
 
 ## SETUP
 
